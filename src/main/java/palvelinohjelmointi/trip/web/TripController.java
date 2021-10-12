@@ -51,6 +51,19 @@ public class TripController {
 		return trepository.save(trip);
 	}
 	
+	@PutMapping("api/{tripId}/users/remove/{userId}")
+	@ResponseBody Trip removeUserfromTrip(@PathVariable Long tripId,
+			@PathVariable Long userId) {
+		
+		Trip trip = trepository.findById(tripId).get();
+		User user = urepository.findById(userId).get();
+	
+		trip.reservatedUsers.remove(user);
+		
+		return trepository.save(trip);
+	}
+	
+	
 	@RequestMapping("/api/trips/{id}")
 	@ResponseBody Optional<Trip> getTripById(@PathVariable("id") Long id) {
 		return trepository.findById(id);
