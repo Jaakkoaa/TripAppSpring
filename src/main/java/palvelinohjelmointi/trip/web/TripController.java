@@ -35,7 +35,8 @@ public class TripController {
 	
 	@RequestMapping("/api/trips")
 	@PostMapping
-	@ResponseBody Trip createTrip(@ModelAttribute Trip trip) {
+	@ResponseBody Trip createTrip(@RequestBody Trip trip) {
+		System.out.println(trip.getName());
         return trepository.save(trip);
     }
 	
