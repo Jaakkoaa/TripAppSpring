@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+import palvelinohjelmointi.trip.domain.User;
 import palvelinohjelmointi.trip.domain.*;
 
 @SpringBootApplication
@@ -27,8 +27,9 @@ public class TripApplication {
 			UserRepository urepository) {
 		return (args) -> {
 			System.out.println("luodaan käyttäjiä");
-			urepository.save(new User("jakko"));
-			urepository.save(new User("pekka"));
+			urepository.save(new User("admin", "$2a$10$fMKk86JHMeM0n963Lsz4Jux4e.uj8HDeQvEYLfHczJsyWRAD8zzFO", "ADMIN"));
+			urepository.save(new User("user", "$2a$10$FQOYjvd8h5N0j0eXl8pNJeCIVjfRQZ9sPY1T5pdbwvLXRg9JCuzAa", "USER"));
+			urepository.save(new User("jakko", "$2a$10$faNxzuacHR.x1XhyIZkiduKEYOR5E3TQUJz8XnWcXsD030cG2vjRW", "USER"));
 			
 			trepository.save(new Trip("12.12.12", "pikkujoulut"));
 			

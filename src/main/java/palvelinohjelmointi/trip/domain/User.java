@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,36 +20,48 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id", nullable = false, unique = true, updatable = false)
+	private long id;
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "username", nullable = false, unique = true)
 	private String username;
+	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "password", nullable = false, unique = false)
+	private String passwordHash;
+	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "role", nullable = false, unique = false)
+	private String role;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "reservatedUsers", fetch = FetchType.EAGER)
 	Set<Trip> trips = new HashSet<>();
 	
+	
+
+
 	public User() {
 			
 	}
 	
-	public User(String username) {
-		
-		this.username = username;
-		
-	}
-	
-	public User(Long id, String username) {
-		super();
-		this.id = id;
-		this.username = username;
-		
-	}
+
 
 	public User(Long id, String username, Set<Trip> trips) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.trips = trips;
+	}
+
+	
+	
+	public User(String username, String passwordHash, String role) {
+		super();
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -74,6 +87,23 @@ public class User {
 	public void setTrips(Set<Trip> trips) {
 		this.trips = trips;
 	} 
+	
+	
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 	
 	
 }
