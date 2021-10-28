@@ -78,7 +78,7 @@
 
             <configuration>
 
-                <nodeVersion>v14.16.0</nodeVersion>
+                <nodeVersion>v16.13.0</nodeVersion>
 
                 <npmVersion>6.14.11</npmVersion>
 
