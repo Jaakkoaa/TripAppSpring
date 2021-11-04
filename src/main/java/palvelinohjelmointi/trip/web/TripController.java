@@ -78,7 +78,7 @@ public class TripController {
 		return trepository.findAll();
 	}
 	
-	@RequestMapping(value = "api/trips/modify/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "api/trips/{id}", method = RequestMethod.PUT)
 	@ResponseBody Trip modifyTrip(@PathVariable("id") Long id, @ModelAttribute Trip trip) {
 		trip.setId(id);
 		return trepository.save(trip);

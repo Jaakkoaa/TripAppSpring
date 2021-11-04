@@ -79,13 +79,13 @@ public class UserController {
 		return trips;
 	}
 	
-	@RequestMapping(value = "api/users/delete/{id}", method = RequestMethod.DELETE) 
+	@RequestMapping(value = "api/users/{id}", method = RequestMethod.DELETE) 
 	@ResponseBody Iterable<User> deleteUser(@PathVariable("id") Long id) {
 		urepository.deleteById(id);
 		return urepository.findAll();
 	}
 	
-	@RequestMapping(value = "api/users/modify/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "api/users/{id}", method = RequestMethod.PUT)
 	@ResponseBody User modifyuser(@PathVariable("id") Long id, @ModelAttribute User user) {
 		user.setId(id);
 		return urepository.save(user);
