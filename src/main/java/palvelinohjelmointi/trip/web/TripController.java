@@ -72,7 +72,7 @@ public class TripController {
 		return trepository.findById(id);
 	}
 	
-	@RequestMapping(value = "api/trips/delete/{id}", method = RequestMethod.DELETE) 
+	@RequestMapping(value = "api/trips/{id}", method = RequestMethod.DELETE) 
 	@ResponseBody Iterable<Trip> deleteTrip(@PathVariable("id") Long id) {
 		trepository.deleteById(id);
 		return trepository.findAll();
