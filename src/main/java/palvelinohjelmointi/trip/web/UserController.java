@@ -20,7 +20,7 @@ import palvelinohjelmointi.trip.domain.Trip;
 import palvelinohjelmointi.trip.domain.TripRepository;
 import palvelinohjelmointi.trip.domain.User;
 import palvelinohjelmointi.trip.domain.UserRepository;
-import java.util.Set;
+import java.security.Principal;
 
 
 
@@ -71,11 +71,17 @@ public class UserController {
 		return urepository.findById(id).get();
 	}
 	
+	@RequestMapping("/api/users/current")
+	@ResponseBody User getCurrentUser(Principal principal) {
+		Long id = ((User) principal).getId();
+		return urepository.findById(id).get();
+	}
+	
 	
 	@RequestMapping("/api/users/{id}/trips")
-	@ResponseBody Set getUsersTripsById(@PathVariable("id") Long id) {
+	@ResponseBody Trip getUsersTripsById(@PathVariable("id") Long id) {
 		User user = urepository.findById(id).get();
-		Set<Trip> trips = user.getTrips();
+		Trip trips = (Trip) user.getTrips();
 		return trips;
 	}
 	
