@@ -26,6 +26,10 @@ public class TripApplication {
 	public CommandLineRunner studentDemo(TripRepository trepository,
 			UserRepository urepository) {
 		return (args) -> {
+			urepository.deleteAll();
+			trepository.deleteAll();
+	
+			// käyttäjät tietokantaan ja matkat, sekä poistettu vanhat tiedot
 			System.out.println("luodaan käyttäjiä");
 			urepository.save(new User("admin", "$2a$10$fMKk86JHMeM0n963Lsz4Jux4e.uj8HDeQvEYLfHczJsyWRAD8zzFO", "ADMIN"));
 			urepository.save(new User("user", "$2a$10$FQOYjvd8h5N0j0eXl8pNJeCIVjfRQZ9sPY1T5pdbwvLXRg9JCuzAa", "USER"));
